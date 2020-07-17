@@ -8,7 +8,7 @@
 
 # Please uncomment below lines and fill values accordingly.
 # Please enter api token obtained from rudder dashboard below
-# rudderWorkspaceToken:
+# rudderWorkspaceToken: 
 
 
 global:
@@ -30,7 +30,7 @@ backend:
     pullPolicy: Always
   controlPlaneJSON: false
   service:
-    type: LoadBalancer
+    type: ClusterIP
     port: 80
     targetPort: 8080
   resources:
@@ -54,7 +54,7 @@ backend:
 
   extraEnvVars:
     - name: CONFIG_BACKEND_URL
-      value: "https://api.rudderlabs.com"
+      value: "http://rudderstack.analytics.svc.cluster.local/"
     - name: CONFIG_PATH
       value: "/etc/rudderstack/config.toml"
     # These credentials are used for backing up successfully processed events
@@ -147,3 +147,6 @@ telegraf_sidecar:
       - 99
 
 affinity: {}
+
+ingress:
+  enabled: false
